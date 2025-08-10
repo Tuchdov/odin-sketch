@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 250px;
+  height: 250px;
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  writing-mode: horizontal-tb;
+  width: 200px;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
