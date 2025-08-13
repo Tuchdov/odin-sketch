@@ -7,6 +7,23 @@ const slider = document.querySelector('#slider');
 let row = document.createElement('div');
 let col = document.createElement('div');
 
+
+let btnClassic = document.querySelector('#classic');
+let btnEraser = document.querySelector('#eraser');
+let btnRainbow = document.querySelector('#rainbow')
+let currentMode = 'Classic';
+
+btnClassic.addEventListener('click', () =>{
+    currentMode = 'classic';
+})
+btnEraser.addEventListener('click', () =>{
+    currentMode = 'erase';
+})
+btnRainbow.addEventListener('click', () =>{
+    currentMode = 'rainbow';
+})
+
+
 const createGrid = () => {
     const input = slider.value;
     for(i = 0; i < input*input; i++) {
@@ -19,11 +36,27 @@ const createGrid = () => {
             square.style.boxSizing = 'border-box';
             square.style.border = 'solid black';
             square.addEventListener('mouseover',()=>{
-                square.style.backgroundColor = 'DimGrey';
-            })
+                switch(currentMode) {
+                    case 'classic':
+                        square.style.backgroundColor = 'DimGrey';
+                        break;
+                    case 'erase':
+                        square.style.backgroundColor = 'White';
+                        break;
+                    case 'rainbow':
+                        let rVal =  Math.floor(Math.random() * 256);
+                        let gVal =  Math.floor(Math.random() * 256);
+                        let bVal =  Math.floor(Math.random() * 256);
+                        const randomColor = `rgb(${rVal}, ${gVal}, ${bVal})`;
+                        square.style.backgroundColor = `${randomColor}`;
+                        break;
+                    default:
+                        square.style.backgroundColor = 'DimGrey';
+            }
+    })
 
-    }
- }
+    }}
+ 
 
 const emptyGrid = () => {
     while (container.firstChild) {
