@@ -3,25 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch A sketch</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Etch A Sketch | Modern Edition</title>
+    <link rel="stylesheet" href="style-ai.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-      <H1>Etch-A-Sketch</H1>
-    </header>
-    <button type="button" id = "classic">Classic Mode</button>
-    <button type="button" id = "eraser">Eraser</button>
-    <button type="button" id = "rainbow">Rainbow Mode</button>
-    <div class = "container"></div>
-    <label for="slider">Choose the number of squares</label><br />
-    <input id ="slider" name = "slider" type="range" min="4" max="32" list ="markers" />
-    <datalist id= "markers">
-        <option value="4" label = "4"></option>
-        <option value="8" label = "8"></option>
-        <option value="16" label = "16"></option>
-        <option value="32" label = "32"></option>
-    </datalist>
+
+    <main class="app-container">
+        <header>
+            <h1>Etch-A-Sketch</h1>
+            <p>A Modern Twist on a Classic</p>
+        </header>
+
+        <div class="main-content">
+            <div class="controls-panel">
+                <div class="mode-buttons">
+                    <button type="button" id="classic" class="btn">Classic</button>
+                    <button type="button" id="rainbow" class="btn">Rainbow</button>
+                    <button type="button" id="eraser" class="btn">Eraser</button>
+                </div>
+                <div class="slider-container">
+                    <label for="slider">Grid Size</label>
+                    <div class="slider-label">
+                        <span id="slider-value">16x16</span>
+                    </div>
+                    <input id="slider" name="slider" type="range" min="4" max="64" value="16" list="markers" />
+                    <datalist id="markers">
+                        <option value="4" label="4x4"></option>
+                        <option value="8" label="8x8"></option>
+                        <option value="16" label="16x16"></option>
+                        <option value="32" label="32x32"></option>
+                        <option value="64" label="64x64"></option>
+                    </datalist>
+                </div>
+            </div>
+
+            <div class="container"></div>
+        </div>
+
+        <footer>
+            <p>Made by Dov Tuch</p>
+        </footer>
+    </main>
+
 </body>
 </html>

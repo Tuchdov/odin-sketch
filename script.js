@@ -2,12 +2,15 @@
 
 const container = document.querySelector('.container');
 const slider = document.querySelector('#slider');
-// create a nested loop to fit the slider
+const sliderValueDisplay = document.querySelector('#slider-value');
+
+
 
 let row = document.createElement('div');
 let col = document.createElement('div');
 
 
+// Buttons and mode setup
 let btnClassic = document.querySelector('#classic');
 let btnEraser = document.querySelector('#eraser');
 let btnRainbow = document.querySelector('#rainbow')
@@ -35,23 +38,23 @@ const createGrid = () => {
             square.style.height = boxSize + 'px';
             square.style.boxSizing = 'border-box';
             square.style.border = 'solid black';
-            square.addEventListener('mouseover',()=>{
+            square.addEventListener('mouseovers',()=>{
                 switch(currentMode) {
                     case 'classic':
-                        square.style.backgroundColor = 'DimGrey';
+                        square.style.backgroundColor = '#34495e';
                         break;
                     case 'erase':
                         square.style.backgroundColor = 'White';
                         break;
                     case 'rainbow':
-                        let rVal =  Math.floor(Math.random() * 256);
-                        let gVal =  Math.floor(Math.random() * 256);
-                        let bVal =  Math.floor(Math.random() * 256);
-                        const randomColor = `rgb(${rVal}, ${gVal}, ${bVal})`;
+                        let r =  Math.floor(Math.random() * 256);
+                        let g =  Math.floor(Math.random() * 256);
+                        let b =  Math.floor(Math.random() * 256);
+                        const randomColor = `rgb(${r}, ${g}, ${b})`;
                         square.style.backgroundColor = `${randomColor}`;
                         break;
                     default:
-                        square.style.backgroundColor = 'DimGrey';
+                        square.style.backgroundColor = '#34495e';
             }
     })
 
@@ -69,4 +72,21 @@ const handleSliderChange = () => {
     createGrid();
 }
 
+// ADDED: Updates the 'NxN' text display in real-time
+const updateSliderDisplay = () => {
+    sliderValueDisplay.textContent = `${slider.value}x${slider.value}`;
+};
+
+
+// 'input' fires continuously as the user drags the slider
+slider.addEventListener('input', updateSliderDisplay);
+
+// 'change' fires only when the user releases the slider
 slider.addEventListener('change', handleSliderChange);
+
+// --- Initial Setup on Page Load ---
+// Ensures the grid and text are correct when the page first loads
+document.addEventListener('DOMContentLoaded', () => {
+    updateSliderDisplay();
+    createGrid();
+});
